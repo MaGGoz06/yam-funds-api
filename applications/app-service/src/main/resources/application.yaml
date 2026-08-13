@@ -1,0 +1,28 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: yam-fondos
+  data:
+    mongodb:
+      uri: ${MONGODB_URI:mongodb://localhost:27017/yam}
+      auto-index-creation: true
+springdoc:
+  swagger-ui.path: /swagger-ui.html
+  api-docs.path: /v3/api-docs
+  show-actuator: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+cors:
+  allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:4200,http://localhost:8080}
+adapters:
+  sns:
+    email-topic-arn: ${SNS_EMAIL_TOPIC_ARN:}
+    sms-topic-arn: ${SNS_SMS_TOPIC_ARN:}
